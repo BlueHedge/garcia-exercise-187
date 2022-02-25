@@ -1,0 +1,298 @@
+/* Author: Cesar Garcia      
+
+
+Course: CPT187
+
+Purpose: The Order, which performs calculations and assigns the proper data its corresponding item or object. Making the entire system error-free, giving users with accurate pricing, item counts, and final reports.
+
+CreateDate: 2/17/22
+
+ */
+
+package edu.cpt187.garcia.exercise6;
+
+//Order Class
+
+public class Order 
+{
+	//Declare and Initialize final class attribute constant
+
+	private final double TAX_RATE = .075;
+
+	//Declare and Initialize all class attributes
+
+	private int discountType = 0;
+
+	private int itemID = 0;
+
+	private String itemName = "";
+
+	private double itemPrice = 0.0;
+
+	private String discountName = "";
+
+	private double discountRate = 0.0;
+
+	private int howMany = 0;
+
+	private int lastItemSelectedIndex = 0;
+
+	private String prizeName = "";
+
+	//Constructor
+
+	//Default Constructor
+
+	Order()
+	{
+
+	}//End of Constructor
+
+	// Start of Setters
+
+	//This setter "sets" the borrowed value to setLastItemSelectedIndex
+
+	public void setLastItemSelectedIndex(int borrowedSearchIndex)
+	{
+		//Assigns borrowed value to setLastItemSelectedIndex
+
+		lastItemSelectedIndex = borrowedSearchIndex;
+
+	}//End of setLastItemSelectedIndex
+
+	//This setter "sets" the borrowed value to setItemID
+
+	public void setItemID(int[] borrowedItemIDs)
+	{
+		//Assignment Statement assigns a value to itemID's array
+
+		itemID = borrowedItemIDs[lastItemSelectedIndex];
+
+	}//END OF setItemID
+
+	//This setter "sets" the borrowed value to setItemName
+
+	public void setItemName(String[] borrowedItemNames)
+	{
+		//Assignment Statement assigns a value to itemName's array
+
+		itemName = borrowedItemNames[lastItemSelectedIndex];
+
+	}//END OF setItemName
+
+	//This setter "sets" the borrowed value to setItemPrice
+
+	public void setItemPrice(double[] borrowedItemPrices)
+	{		
+		//Assignment statement assigns a value to itemPrice's array
+
+		itemPrice = borrowedItemPrices[lastItemSelectedIndex];
+
+	}//END OF setItemPrice
+
+	//This setter "sets" the borrowed value to setHowMany
+
+	public void setHowMany(String borrowedHowMany)
+	{
+		//Assigns borrowed value to itemSelection
+
+		howMany = Integer.parseInt(borrowedHowMany);
+
+	}// END OF setHowMany
+
+	//This setter "sets" the borrowed value to setDiscountType
+
+	public void setDiscountType(char borrowedMenuSelection)
+	{
+		//Assigns borrowed value to discountType
+
+		discountType = borrowedMenuSelection - 'A';
+
+	}//END OF discountType
+
+	//This setter "sets" the borrowed value to setDiscountName
+
+	public void setDiscountName(String[] borrowedDiscountNames) 
+	{
+		//Assignment statement assigns a value to discountName's array
+
+		discountName = borrowedDiscountNames[discountType];
+
+	}//End of setDiscountName
+
+	//This setter "sets" the borrowed value to setDiscountRate
+
+	public void setDiscountRate(double[] borrowedDiscountRate)
+	{
+		//Assignment statement assigns a value to discountRate's array
+
+		discountRate = borrowedDiscountRate[discountType];
+
+	}//END OF setDiscountRate
+
+	//This setter "sets" the borrowed value to setPrizeName
+
+	public void setPrizeName(String[] borrowedPrizeNames, int borrowedPrizeIndex) 
+	{
+		//Assignment statement assigns a value to prizeName's array
+
+		prizeName = borrowedPrizeNames[borrowedPrizeIndex];
+
+	}//END OF setPrizeName
+
+	//This setter "sets" the borrowed value to setDecreaseInStock
+
+	public void setDecreaseInStock(Inventory borrowedInventoryObject)
+	{
+		//Statement reduces items in setReduceStock
+
+		borrowedInventoryObject.setReduceStock(howMany);
+
+	}//END OF setDecreaseInStock
+
+	//END OF setters
+
+	//Start of Getters
+
+	//Getter returns the value of getInStockCount
+
+	public int getInStockCount(int[] borrowedInStockCounts)
+	{
+		//return borrowedInStockCounts array
+
+		return borrowedInStockCounts[lastItemSelectedIndex];
+
+	}//END OF getInStockCount
+
+	//Getter returns the value of getItemID
+
+	public int getItemID()
+	{
+		//Return itemID attribute
+
+		return itemID;
+
+	}//END OF getItemID
+
+	//Getter returns the value of getItemName
+
+	public String getItemName()
+	{
+		//Return itemName attribute
+
+		return itemName;
+
+	}//END OF getItemName
+
+	//Getter returns the value of getItemPrice
+
+	public double getItemPrice()
+	{
+		//Return itemPrice attribute
+
+		return itemPrice;
+
+	}//END OF getItemPrice
+
+	//Getter returns the value of getHowMany
+
+	public int getHowMany()
+	{
+		//Return howMany attribute
+
+		return howMany;
+
+	}//END OF getHowMany
+
+	//Getter returns the value of getDiscountName
+
+	public String getDiscountName()
+	{
+
+		//Return discountRate attribute
+
+		return discountName;
+
+	}//END OF getDiscountName
+
+	//Getter returns the value of getDiscountRate
+
+	public double getDiscountRate()
+	{
+		//Return discountRate attribute
+
+		return discountRate;
+
+	}//END OF getDiscountRate
+
+	//Getter returns the value of getDiscountAmt
+
+	public double getDiscountAmt()
+	{
+		//Return calculates value for discount amount
+
+		return (itemPrice * discountRate);
+
+	}//END OF getDiscountAmt
+
+	//Getter returns the value of getDiscountPrice
+
+	public double getDiscountPrice()
+	{
+		//Return calculates value for discount price
+
+		return (itemPrice - getDiscountAmt());
+
+	}//END OF getDiscountPrice
+
+	//Getter returns the value of getPrizeName
+
+	public String getPrizeName() 
+	{
+		//Return prizeName attribute
+
+		return prizeName;
+
+	}//END OF getPrizeName
+
+	//Getter returns the value of getSubTotal
+
+	public double getSubTotal()
+	{
+		//Return calculates value for sub-total
+
+		return (howMany * getDiscountPrice());
+
+	}//END OF getSubTotal
+
+	//Getter returns the value of getTaxRate
+
+	public double getTaxRate()
+	{
+		//Return TAX_RATE attribute
+
+		return TAX_RATE;
+
+	}//END OF getTaxRate
+
+	//Getter returns the value of getTaxAmt
+
+	public double getTaxAmt() 
+	{
+		//Return calculates value for tax amount
+
+		return (getSubTotal() * TAX_RATE);
+
+	}//END OF getTaxAmt
+
+	//Getter returns the value of getTotalCost
+
+	public double getTotalCost()
+	{
+		//Return calculates value for the total cost
+
+		return (getSubTotal() + getTaxAmt());
+
+	}//END OF getTotalCost
+
+}//END OF Order Class
