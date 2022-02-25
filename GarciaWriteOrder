@@ -1,0 +1,104 @@
+/* Author: Cesar Garcia                                                       
+
+Course: CPT187
+
+Purpose: Without the need for a person to maintain track of hundreds of orders, the WriteOrder keeps track of all things sold simply writing them down on the user's computer and saving them.
+
+CreateDate: 2/17/22
+
+ */
+
+package edu.cpt187.garcia.exercise6;
+
+import java.io.PrintWriter;
+
+import java.io.FileWriter;
+
+import java.io.IOException;
+
+//WriteOrder Class
+
+public class WriteOrder 
+{
+	//Declare and Initialize all class attributes
+
+	private boolean fileFoundFlag = false;
+
+	private String masterFileName = "";
+
+	private int recordCount = 0;
+
+	//Constructor
+
+	//non-Default Constructor
+
+	WriteOrder(String borrowedFileName)
+	{
+		masterFileName = borrowedFileName;
+
+	}//End of non-Default Constructor
+
+
+	//This setter "sets" the record to the specified file to setWriteOrder
+
+	public void setWriteOrder(int borrowedItemID, String borrowedItemName, double borrowedItemPrice, int borrowedQuantity, double borrowedOrderCost)
+	{
+		//Try block
+
+		try
+		{
+			//Instantiation will try to open a file
+
+			PrintWriter filePW = new PrintWriter(new FileWriter(masterFileName, true));
+
+			filePW.printf("%n%d\t%s\t%f\t%d\t%f", borrowedItemID, borrowedItemName, borrowedItemPrice, borrowedQuantity, borrowedOrderCost);
+
+			fileFoundFlag = true;
+
+			recordCount++;
+
+			filePW.close();
+		}
+
+		catch(IOException ex)
+		{
+			fileFoundFlag = false;
+		}
+
+	}//END OF setWriteOrder
+
+	//END OF setters
+
+	//Start of Getters
+
+	//Getter returns the value of getFileFoundFlag
+
+	public boolean getFileFoundFlag()
+	{
+		//return fileFoundFlag 
+
+		return fileFoundFlag;
+
+	}//END OF getFileFoundFlag
+
+	//Getter returns the value of getFileName
+
+	public String getFileName()
+	{
+		//return masterFileName 
+
+		return masterFileName;
+
+	}//END OF getFileName
+
+	//Getter returns the value of getRecordCount
+
+	public int getRecordCount()
+	{
+		//return recordCount 
+
+		return recordCount;
+
+	}//END OF getRecordCount
+
+}//END OF WriteOrder Class
